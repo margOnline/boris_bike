@@ -12,29 +12,24 @@ class Station
     
     @max_capacity = @bikes.length
     @capacity = max_capacity
-    @broken_bikes = 0
+    @broken_bikes = []
+   
   end
 
-  def check_bike?(bike)
-    store_broken_bike if bike.is_broken?
+  def store_broken(bike)
+    broken_bikes.push(bike) if bike.is_broken?
   end
 
-  def store_broken_bike
-    @broken_bikes += 1  
-  end
-
-  def has_bikes?
-    @capacity > 0   
-  end
+  # def has_bikes?
+  #   @capacity > 0   
+  # end
 
   def check_out
-    if has_bikes? && rentable_capacity > 0 
-      @capacity -= 1 
-      bikes.pop
-    end
+    bikes.pop if working_bikes > 0
   end
 
-  def rentable_capacity
-    rentable_capacity = @capacity - @broken_bikes
+# put a check in
+  def check_in(bike)
+    #check sum of 2 bike arrays
   end
 end

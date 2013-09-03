@@ -1,7 +1,7 @@
 require 'bike'
 
 describe 'Bike' do
-  let(:bike) {Bike.new}
+  let(:bike) {Bike.new(4)}
 
   it 'is not broken' do
     expect(bike.is_broken?).to be_false
