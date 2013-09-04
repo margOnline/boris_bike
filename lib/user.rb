@@ -11,4 +11,9 @@ class User
     @bike = station.check_out
   end
 
+  def return_bike(station)
+    station.check_in(bike)
+    @bike = nil
+  end
+
 end

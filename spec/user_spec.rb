@@ -18,8 +18,16 @@ describe 'User' do
   end
 
 
-  xit 'should be able to return a bike' do
-
+  it 'return bike to station' do
+    station = double :station, :check_in => :bike
+    station.should_receive(:check_in)
+    user.return_bike(station)
   end
 
+  it 'has no bike' do
+    station = double :station, :check_in => :bike
+    user.return_bike(station)
+    expect(user.bike).to eq nil
+  end
+  
 end

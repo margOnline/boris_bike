@@ -1,6 +1,6 @@
 class Station
 
-  attr_accessor :bikes, :capacity, :broken_bikes
+  attr_accessor :bikes, :broken_bikes
   attr_reader :max_capacity
 
 #need to keep track of number of bikes we have
@@ -11,7 +11,6 @@ class Station
     @bikes = bikes
     
     @max_capacity = @bikes.length
-    @capacity = max_capacity
     @broken_bikes = []
    
   end
