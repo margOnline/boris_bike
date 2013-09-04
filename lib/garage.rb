@@ -1,12 +1,19 @@
-require 'bike'
+#all bikes delivered to garage are broken
 
 class Garage
 
-  def check_bike?(bike)
-    bike.is_broken?
+  attr_accessor :fixed_bikes, :broken_bikes
+
+  def initialize()
+    @fixed_bikes = []
+    @broken_bikes = []
+  end
+
+  def check_in(bike)
+    @broken_bikes.push(bike)
   end
 
   def fix(bike)
-    bike.fix!
+    @broken_bikes.pop
   end
 end

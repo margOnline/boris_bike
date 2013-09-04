@@ -43,15 +43,16 @@ describe 'Station' do
   end  
 
   it 'calls garage when broken bike checked in' do
-      broken_bike = double :bike, {:is_broken? => true}
-      van = double :van, {:accept_bike => broken_bike} 
-      van.should_receive(:accept_bike).with(broken_bike)
-      station.store_broken(broken_bike)
+    broken_bike = double :bike, {:is_broken? => true}
+    van = double :van, {:accept_bike => broken_bike} 
+    van.should_receive(:accept_bike).with(broken_bike)
+    station.store_broken(broken_bike, van)
   end
   
-  it 'if station is empty' do
-    pending 'build feature to call vans to deliver bikes'
-    expect
+  it 'knows if station can check in bikes' do
+    station.has_space?
+    expect(station.has_space?).to be_true
   end
+
 end
 

@@ -1,6 +1,5 @@
 #all new stations are delivered fully loaded with working bikes
 #2 arrays to keep track of working bikes and broken bikes
-
 class Station
 
   attr_accessor :bikes, :broken_bikes
@@ -23,16 +22,24 @@ class Station
   end
 
   def check_in(bike)
-    if bikes.length < @max_capacity
+    if full?
       @bikes.push(bike)
     else
       'Station full, see list for nearest station.'
     end
   end
 
-  def store_broken(bike)
-    if bike.is_broken? && (@bikes.length + @broken_bikes.length < @max_capacity)
-      @broken_bikes.push(bike) 
+  def full?
+    (@bikes.length + @broken_bikes.length) < @max_capacity
+  end
+
+  def has_space?
+    !full?
+  end
+
+  def store_broken(bike, van)
+    if bike.is_broken? && has_space?
+      @broken_bikes.push(bike)
       van.accept_bike(bike)
     else
       'Station full, see list for nearest station.'
