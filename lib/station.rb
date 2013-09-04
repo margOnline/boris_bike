@@ -25,7 +25,7 @@ class Station
   # end
 
   def check_out
-    bikes.pop if working_bikes > 0
+    bikes.pop if bikes.length > 0
   end
 
 # put a check in

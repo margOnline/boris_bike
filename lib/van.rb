@@ -10,6 +10,9 @@ class Van
 
   def accept_bike?
     @capacity < @max_capacity
+    #from where:
+    #  tell station to delete a bike from broken bike array
+    #  or tell garage to "    " from its fixed array
   end
 
   def store_bike
@@ -18,6 +21,9 @@ class Van
 
   def deliver_bike
     @capacity = 0
+    #to garage - garage must accept bike
+    #to station - station must accept bike, 
+    #             increment fixed bike array
   end
 
 end

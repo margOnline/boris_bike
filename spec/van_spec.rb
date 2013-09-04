@@ -29,7 +29,6 @@ describe 'Van' do
   
 end
 # additional features to add:
-# recognise full stations and not deliver
 # recognise location ie garage or station
 # recognise if not full go to another station
 # get more bikes 
