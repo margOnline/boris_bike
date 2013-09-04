@@ -8,7 +8,7 @@ class Van
     @max_capacity = max_capacity
   end
 
-  def accept_bike?
+  def accept_bike
     @capacity < @max_capacity
     #from where:
     #  tell station to delete a bike from broken bike array

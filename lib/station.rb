@@ -1,34 +1,41 @@
+#all new stations are delivered fully loaded with working bikes
+#2 arrays to keep track of working bikes and broken bikes
+
 class Station
 
   attr_accessor :bikes, :broken_bikes
   attr_reader :max_capacity
 
-#need to keep track of number of bikes we have
-#and number of broken bikes
-
-
   def initialize(bikes)
     @bikes = bikes
-    
     @max_capacity = @bikes.length
     @broken_bikes = []
    
   end
 
-  def store_broken(bike)
-    broken_bikes.push(bike) if bike.is_broken?
-  end
-
-  # def has_bikes?
-  #   @capacity > 0   
-  # end
-
   def check_out
-    bikes.pop if bikes.length > 0
+    if @bikes.length > 0
+      @bikes.pop 
+    else
+      'Please see list for nearest station.'
+    end
+
   end
 
-# put a check in
   def check_in(bike)
-    #check sum of 2 bike arrays
+    if bikes.length < @max_capacity
+      @bikes.push(bike)
+    else
+      'Station full, see list for nearest station.'
+    end
+  end
+
+  def store_broken(bike)
+    if bike.is_broken? && (@bikes.length + @broken_bikes.length < @max_capacity)
+      @broken_bikes.push(bike) 
+      van.accept_bike(bike)
+    else
+      'Station full, see list for nearest station.'
+    end
   end
 end
