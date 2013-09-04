@@ -8,11 +8,18 @@ class Van
     @max_capacity = max_capacity
   end
 
+  def bike_broken?(bikes)
+    broken_bikes = bikes.select {|bike| bike.is_broken?}
+
+  end
+
   def accept_bike
+    #check bike is broken
+    #where is bike from
     @capacity < @max_capacity
     #from where:
-    #  tell station to delete a bike from broken bike array
-    #  or tell garage to "    " from its fixed array
+    #  station tell station to delete a bike from broken bike array
+    #  garage:or tell garage to "    " from its fixed array
   end
 
   def store_bike

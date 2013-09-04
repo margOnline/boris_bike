@@ -5,10 +5,12 @@ describe 'Garage' do
 
   let(:garage) {Garage.new}
 
-  it 'should check in a bike' do
-    bike = double :bike
-    garage.check_in(bike)
-    expect(garage.broken_bikes).to eq [bike]
+  it 'should check in bikes' do
+    bike1 = double :bike
+    bike2 = double :bike
+    bikes = bike1, bike2
+    garage.check_in(bikes)
+    expect(garage.broken_bikes).to eq [bike1, bike2]
   end
 
   it 'removes broken bike from broken bike array' do
@@ -20,10 +22,18 @@ describe 'Garage' do
 
   it 'puts the fixed bike into the fixed bike array' do
     bike = double :bike, fix!: true
-
     garage.fix(bike)
     expect(garage.fixed_bikes).to eq [bike]
   end  
+
+  it 'should check out bikes' do
+    bike = double :bike
+    garage.check_out
+    expect(garage.fixed_bikes).to eq []
+  end
+
+  
+
 end
 
   # it 'checks if the bike is broken' do

@@ -1,4 +1,5 @@
 #all bikes delivered to garage are broken
+#need to include max capacity check
 
 class Garage
 
@@ -9,14 +10,18 @@ class Garage
     @broken_bikes = []
   end
 
-  def check_in(bike)
-    @broken_bikes.push(bike)
+  def check_in(bikes)
+    bikes.each {|bike| @broken_bikes.push(bike) }
   end
 
   def fix(bike)
     bike.fix!
     @broken_bikes.delete(bike)
-
     @fixed_bikes.push(bike)
   end
+
+  def check_out
+    @fixed_bikes = []
+  end
+
 end
