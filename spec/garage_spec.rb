@@ -12,11 +12,18 @@ describe 'Garage' do
   end
 
   it 'removes broken bike from broken bike array' do
-    bike = double :bike
+    bike = double :bike, fix!: true
     garage.broken_bikes = [bike]
     garage.fix(bike)
     expect(garage.broken_bikes).to eq []
   end
+
+  it 'puts the fixed bike into the fixed bike array' do
+    bike = double :bike, fix!: true
+
+    garage.fix(bike)
+    expect(garage.fixed_bikes).to eq [bike]
+  end  
 end
 
   # it 'checks if the bike is broken' do

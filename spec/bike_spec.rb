@@ -11,6 +11,11 @@ describe 'Bike' do
     bike.break! 
     expect(bike.is_broken?).to be_true 
   end
+
+  it 'fixes' do
+    bike.fix!
+    expect(bike.is_broken?).to be_false
+  end
 end
 
 #status of bike is broke - will need to be fixed by garage

@@ -14,6 +14,9 @@ class Garage
   end
 
   def fix(bike)
-    @broken_bikes.pop
+    bike.fix!
+    @broken_bikes.delete(bike)
+
+    @fixed_bikes.push(bike)
   end
 end
