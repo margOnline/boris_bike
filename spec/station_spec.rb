@@ -3,6 +3,13 @@ require 'station'
 describe 'Station' do
 
   let(:station) {Station.new([:bike1, :bike2, :bike4])}
+  # let(:empty_station) do
+  #   Station.new(4)
+  #   station.bikes = [:bike1, :bike2]
+  # end
+
+  # describe 'empty_station'
+  #   before(:each){station.bikes = [:sdflkj]}
 
   it 'knows if it has bikes' do
     expect(station.bikes.length).to eq 3
@@ -30,27 +37,29 @@ describe 'Station' do
   end
 
   it 'checks in bikes' do
-    bike = double :bike
-    station.bikes = []
-    station.check_in(bike)
-    expect(station.bikes.length).to eq 1
+    bikes = [:bike1, :bike2, :bike4]
+    station.check_in(bikes)
+    expect(station.bikes).to eq [:bike1, :bike2, :bike4]
   end  
 
-  it 'doesn\'t check in bikes if it will exceed max_capacity' do
-    bike = double :bike
-    station.check_in(bike)
-    expect(station.check_in(bike)).to eq 'Station full, see list for nearest station.'
+  it 'knows if its full' do
+    station = Station.new([])
+    station.full?
+    expect(station.full?).to be_true
   end  
 
   it 'calls garage when broken bike checked in' do
     broken_bike = double :bike, {:is_broken? => true}
     van = double :van, {:accept_bike => broken_bike} 
+    station.bikes = [:bike1, :bike2]
+
     van.should_receive(:accept_bike).with(broken_bike)
     station.store_broken(broken_bike, van)
   end
   
   it 'knows if station can check in bikes' do
-    station.has_space?
+    station.bikes = [:bike1, :bike2]
+
     expect(station.has_space?).to be_true
   end
 

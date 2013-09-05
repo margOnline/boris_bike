@@ -20,16 +20,16 @@ class Station
 
   end
 
-  def check_in(bike)
+  def check_in(bikes)
     if has_space?
-      @bikes.push(bike)
+      @bikes = bikes.each {|bike| @bikes.push(bike)}
     else
       'Station full, see list for nearest station.'
     end
   end
 
   def full?
-    (@bikes.length + @broken_bikes.length) > @max_capacity
+    (@bikes.length + @broken_bikes.length) >= @max_capacity
   end
 
   def has_space?
