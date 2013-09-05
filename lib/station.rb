@@ -9,7 +9,6 @@ class Station
     @bikes = bikes
     @max_capacity = @bikes.length
     @broken_bikes = []
-   
   end
 
   def check_out
@@ -22,7 +21,7 @@ class Station
   end
 
   def check_in(bike)
-    if full?
+    if has_space?
       @bikes.push(bike)
     else
       'Station full, see list for nearest station.'
@@ -30,7 +29,7 @@ class Station
   end
 
   def full?
-    (@bikes.length + @broken_bikes.length) < @max_capacity
+    (@bikes.length + @broken_bikes.length) > @max_capacity
   end
 
   def has_space?

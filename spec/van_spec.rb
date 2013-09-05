@@ -1,32 +1,35 @@
 require 'van'
 
 describe 'Van' do 
-  let(:van) {Van.new(40)}
+  let(:van) {Van.new(5)}
 
   it 'knows if bikes are broken' do
     bike1 = double :bike, {:is_broken? => true}
     bike2 = double :bike, {:is_broken? => false}
     bikes = bike1, bike2
-    
     van.bike_broken?(bikes)
     expect(van.bike_broken?(bikes)).to eq [bike1]
   end
 
-  it 'should accept bikes if van has space' do
-    pending
-    bike = double :bike
-    van.capacity = 3
-    expect(van.accept_bike?).to be_true
+  it 'knows if it has space to accept bikes' do
+    bike1 = double :bike, {:is_broken? => true}
+    bike2 = double :bike, {:is_broken? => false}
+    bike3 = double :bike, {:is_broken? => true}
+    bike4 = double :bike, {:is_broken? => false}
+    van.broken_bikes = bike1, bike2
+    van.fixed_bikes = bike3, bike4
+    expect(van.has_space?).to be_true
   end
 
-  it 'should accept bikes if van does not space' do
-    pending
-    bike = double :bike
-    van.capacity = 40
-    expect(van.accept_bike?).to be_false
+  it 'knows if it is full' do
+    van = Van.new(2)
+    bike1 = double :bike, {:is_broken? => true}
+    bike2 = double :bike, {:is_broken? => false}
+    van.broken_bikes = bike1, bike2
+    expect(van.has_space?).to be_false
   end
 
-  it 'should store bikes' do
+  it 'should store_broken_bikes' do
     bike = double :bike
     van.capacity = 39
     expect(van.store_bike).to eq 40
