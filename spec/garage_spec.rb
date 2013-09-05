@@ -41,6 +41,8 @@ describe 'Garage' do
     garage.call_van(van, fixed_bikes)
   end
 
+
+
 end
 
   

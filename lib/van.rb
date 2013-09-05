@@ -39,5 +39,9 @@ class Van
     @fixed_bikes = fixed_bikes.each {|bike| @fixed_bikes.push(bike)}
   end
 
+  def call_station(fixed_bikes, station)
+    station.check_in(fixed_bikes)    
+  end
+
 
 end

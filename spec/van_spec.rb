@@ -49,7 +49,6 @@ describe 'Van' do
     bike2 = double :bike
     broken_bikes = bike1, bike2
     garage = double :garage, {:check_in => broken_bikes}
-
     garage.should_receive(:check_in).with(broken_bikes)
     van.deliver_bike(broken_bikes, garage)
   end
@@ -59,8 +58,6 @@ describe 'Van' do
     expect(van.broken_bikes).to eq []
   end
 
-
-
   it 'should fill van of fixed bikes' do
     bike1 = double :bike
     bike2 = double :bike
@@ -69,6 +66,16 @@ describe 'Van' do
     expect(van.fixed_bikes).to eq [bike1, bike2]
   end 
   
+  it 'calls station\'s check in method' do
+    bike1 = double :bike
+    bike2 = double :bike
+    fixed_bikes = bike1, bike2
+    station = double :station, {:check_in => fixed_bikes}
+    station.should_receive(:check_in).with(fixed_bikes)
+    van.call_station(fixed_bikes, station)
+  end
+
+
 end
 # additional features to add:
 # recognise location ie garage or station
