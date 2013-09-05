@@ -9,8 +9,8 @@ class Van
     @fixed_bikes = []
   end
 
-  def bike_broken?(bikes)
-    broken_bikes = bikes.select {|bike| bike.is_broken?}
+  def bike_broken?(bike)
+    bike.is_broken?(bike)
   end
 
   def full?
@@ -22,10 +22,9 @@ class Van
   end
 
   def accept_bike(bikes)
-    bike_broken?(bikes)
-
-    #where is bike from
-    #from where:
+    @broken_bikes = bikes.select {|bike| bike_broken?(bike)}
+    # where is bike from
+    # from where:
     #  station tell station to delete a bike from broken bike array
     #  garage:or tell garage to "    " from its fixed array
   end

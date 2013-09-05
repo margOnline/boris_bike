@@ -5,10 +5,14 @@ describe 'Van' do
 
   it 'knows if bikes are broken' do
     bike1 = double :bike, {:is_broken? => true}
+    van.bike_broken?(bike1)
+    expect(van.bike_broken?(bike1)).to be_true
+  end
+
+  it 'knows if bikes aren not broken' do
     bike2 = double :bike, {:is_broken? => false}
-    bikes = bike1, bike2
-    van.bike_broken?(bikes)
-    expect(van.bike_broken?(bikes)).to eq [bike1]
+    van.bike_broken?(bike2)
+    expect(van.bike_broken?(bike2)).to be_false
   end
 
   it 'knows if it has space to accept bikes' do
@@ -29,24 +33,27 @@ describe 'Van' do
     expect(van.has_space?).to be_false
   end
 
-  it 'should store_broken_bikes' do
-    bike = double :bike
-    van.capacity = 39
-    expect(van.store_bike).to eq 40
+  it 'should check in broken bikes' do
+    bike1 = double :bike, {:is_broken? => true}
+    bike2 = double :bike, {:is_broken? => true}
+    bike3 = double :bike, {:is_broken? => false}
+    broken_bikes = [bike1, bike2, bike3]
+
+    van.accept_bike(broken_bikes)
+
+    expect(van.broken_bikes).to eq [bike1, bike2]
   end
 
   it 'should deliver bikes' do
-    bike = double :bike
-    van.capacity = 40
-    expect(van.deliver_bike).to eq 0
+
   end
 
   it 'should empty van of nbroken bikes' do
-
+    pending
   end
 
   it 'should fill van of fixed bikes' do
-
+    pending
   end 
   
 end
