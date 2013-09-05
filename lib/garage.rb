@@ -24,4 +24,8 @@ class Garage
     @fixed_bikes = []
   end
 
+  def call_van(van, fixed_bikes)
+    van.fill(fixed_bikes)    
+  end
+
 end

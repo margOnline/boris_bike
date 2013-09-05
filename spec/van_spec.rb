@@ -44,16 +44,29 @@ describe 'Van' do
     expect(van.broken_bikes).to eq [bike1, bike2]
   end
 
-  it 'should deliver bikes' do
+  it 'should deliver bikes to garage' do
+    bike1 = double :bike
+    bike2 = double :bike
+    broken_bikes = bike1, bike2
+    garage = double :garage, {:check_in => broken_bikes}
 
+    garage.should_receive(:check_in).with(broken_bikes)
+    van.deliver_bike(broken_bikes, garage)
   end
 
-  it 'should empty van of nbroken bikes' do
-    pending
+  it 'should empty van of broken bikes' do
+    van.empty
+    expect(van.broken_bikes).to eq []
   end
+
+
 
   it 'should fill van of fixed bikes' do
-    pending
+    bike1 = double :bike
+    bike2 = double :bike
+    fixed_bikes = bike1, bike2
+    van.fill(fixed_bikes)
+    expect(van.fixed_bikes).to eq [bike1, bike2]
   end 
   
 end

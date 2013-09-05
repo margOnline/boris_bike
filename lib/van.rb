@@ -23,21 +23,21 @@ class Van
 
   def accept_bike(bikes)
     @broken_bikes = bikes.select {|bike| bike_broken?(bike)}
-    # where is bike from
-    # from where:
-    #  station tell station to delete a bike from broken bike array
-    #  garage:or tell garage to "    " from its fixed array
+    # from station
   end
 
-  def store_bike
-    @capacity += 1
+  def deliver_bike(broken_bikes, garage)
+    garage.check_in(broken_bikes)
+    #to garage - 
   end
 
-  def deliver_bike
-    @capacity = 0
-    #to garage - garage must accept bike
-    #to station - station must accept bike, 
-    #             increment fixed bike array
+  def empty
+    @broken_bikes = []
   end
+
+  def fill(fixed_bikes)
+    @fixed_bikes = fixed_bikes.each {|bike| @fixed_bikes.push(bike)}
+  end
+
 
 end
