@@ -1,6 +1,5 @@
 class Bike
 
-  attr_accessor :broken
   attr_reader :bike_id
 
   def initialize (bike_id)
@@ -16,8 +15,8 @@ class Bike
     @broken = false    
   end
 
-
   def is_broken?
     @broken
   end
+
 end

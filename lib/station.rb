@@ -7,7 +7,7 @@ class Station
 
   def initialize(bikes)
     @bikes = bikes
-    @max_capacity = @bikes.length
+    @max_capacity = 10
     @broken_bikes = []
   end
 
@@ -22,7 +22,7 @@ class Station
 
   def check_in(bikes)
     if has_space?
-      @bikes = bikes.each {|bike| @bikes.push(bike)}
+      @bikes.concat bikes
     else
       'Station full, see list for nearest station.'
     end

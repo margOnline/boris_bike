@@ -3,18 +3,6 @@ require 'van'
 describe 'Van' do 
   let(:van) {Van.new(5)}
 
-  it 'knows if bikes are broken' do
-    bike1 = double :bike, {:is_broken? => true}
-    van.bike_broken?(bike1)
-    expect(van.bike_broken?(bike1)).to be_true
-  end
-
-  it 'knows if bikes aren not broken' do
-    bike2 = double :bike, {:is_broken? => false}
-    van.bike_broken?(bike2)
-    expect(van.bike_broken?(bike2)).to be_false
-  end
-
   it 'knows if it has space to accept bikes' do
     bike1 = double :bike, {:is_broken? => true}
     bike2 = double :bike, {:is_broken? => false}
@@ -33,32 +21,30 @@ describe 'Van' do
     expect(van.has_space?).to be_false
   end
 
-  it 'should check in broken bikes' do
+  it 'checks in broken bikes' do
     bike1 = double :bike, {:is_broken? => true}
     bike2 = double :bike, {:is_broken? => true}
     bike3 = double :bike, {:is_broken? => false}
     broken_bikes = [bike1, bike2, bike3]
-
     van.accept_bike(broken_bikes)
-
     expect(van.broken_bikes).to eq [bike1, bike2]
   end
 
-  it 'should deliver bikes to garage' do
+  it 'delivers bikes to garage' do
     bike1 = double :bike
     bike2 = double :bike
     broken_bikes = bike1, bike2
     garage = double :garage, {:check_in => broken_bikes}
-    garage.should_receive(:check_in).with(broken_bikes)
-    van.deliver_bike(broken_bikes, garage)
+    garage.should_receive(:check_in)
+    van.deliver_bike(garage)
   end
 
-  it 'should empty van of broken bikes' do
+  it 'empties van of broken bikes' do
     van.empty
     expect(van.broken_bikes).to eq []
   end
 
-  it 'should fill van of fixed bikes' do
+  it 'fills van of fixed bikes' do
     bike1 = double :bike
     bike2 = double :bike
     fixed_bikes = bike1, bike2

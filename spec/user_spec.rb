@@ -18,7 +18,7 @@ describe 'User' do
   end
 
 
-  it 'return bike to station' do
+  it 'returns bike to station' do
     station = double :station, :check_in => :bike
     station.should_receive(:check_in)
     user.return_bike(station)

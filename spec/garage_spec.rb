@@ -5,7 +5,7 @@ describe 'Garage' do
 
   let(:garage) {Garage.new}
 
-  it 'should check in bikes' do
+  it 'checks in bikes' do
     bike1 = double :bike
     bike2 = double :bike
     bikes = bike1, bike2
@@ -26,7 +26,7 @@ describe 'Garage' do
     expect(garage.fixed_bikes).to eq [bike]
   end  
 
-  it 'should check out bikes' do
+  it 'checks out bikes' do
     bike = double :bike
     garage.check_out
     expect(garage.fixed_bikes).to eq []
