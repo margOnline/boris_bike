@@ -19,12 +19,10 @@ class Van
 
   def accept_bike(bikes)
     @broken_bikes = bikes.select {|bike| bike.is_broken? }
-    # from station
   end
 
   def deliver_bike(garage)
     garage.check_in(@broken_bikes)
-    #to garage - 
   end
 
   def empty

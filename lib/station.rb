@@ -12,11 +12,11 @@ class Station
   end
 
   def check_out
-    @bikes.any? ? @bikes.pop : 'Please see list for nearest station.'
+    @bikes.any? ? @bikes.pop : messages[:station_empty]
   end
 
   def check_in(bikes)
-    has_space? ? @bikes.concat(bikes) : station_full_message
+    has_space? ? @bikes.concat(bikes) : messages[:station_full]
   end
 
   def full?
@@ -32,12 +32,15 @@ class Station
       @broken_bikes.push(bike)
       van.accept_bike(bike)
     else
-      station_full_message
+      messages[:station_full]
     end
   end
 
   private
-  def station_full_message
-    'Station full, see list for nearest station.'
+  def messages
+    {
+      station_full: 'Station full, see list for nearest station.',
+      station_empty: 'Please see list for nearest station.'
+    }
   end
 end
