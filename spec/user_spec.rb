@@ -2,7 +2,6 @@ require 'user'
 
 describe 'User' do 
 
-
   let(:user) {User.new('Sam', 'Harris')}
 
   it 'rents a bike from a station' do
@@ -16,7 +15,6 @@ describe 'User' do
     user.rent_bike(station)
     expect(user.bike).to eq :bike
   end
-
 
   it 'returns bike to station' do
     station = double :station, :check_in => :bike

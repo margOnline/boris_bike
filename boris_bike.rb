@@ -1,0 +1,5 @@
+require_relative 'lib/bike'
+require_relative 'lib/garage'
+require_relative 'lib/user'
+require_relative 'lib/van'
+require_relative 'lib/station'

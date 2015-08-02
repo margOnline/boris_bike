@@ -6,7 +6,7 @@ System to manage boris bikes in collaboration with Sam Harris
 Requirements:
 - People can rent and return bikes (from bike stations)
 
-- Bikes don't have to be dropped off at the same station  as they were rented from
+- Bikes don't have to be dropped off at the same station as they were rented from
 
 - Bikes can be broken
 

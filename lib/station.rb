@@ -12,20 +12,11 @@ class Station
   end
 
   def check_out
-    if @bikes.length > 0
-      @bikes.pop 
-    else
-      'Please see list for nearest station.'
-    end
-
+    @bikes.any? ? @bikes.pop : 'Please see list for nearest station.'
   end
 
   def check_in(bikes)
-    if has_space?
-      @bikes.concat bikes
-    else
-      'Station full, see list for nearest station.'
-    end
+    has_space? ? @bikes.concat(bikes) : station_full_message
   end
 
   def full?
@@ -41,7 +32,12 @@ class Station
       @broken_bikes.push(bike)
       van.accept_bike(bike)
     else
-      'Station full, see list for nearest station.'
+      station_full_message
     end
+  end
+
+  private
+  def station_full_message
+    'Station full, see list for nearest station.'
   end
 end

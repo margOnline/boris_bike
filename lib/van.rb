@@ -9,7 +9,6 @@ class Van
     @fixed_bikes = []
   end
 
-
   def full?
     (@fixed_bikes.length + @broken_bikes.length) >= @max_capacity
   end
@@ -39,6 +38,5 @@ class Van
   def call_station(fixed_bikes, station)
     station.check_in(fixed_bikes)    
   end
-
 
 end

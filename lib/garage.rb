@@ -12,7 +12,6 @@ class Garage
 
   def check_in(bikes)
     @broken_bikes.concat bikes
-    # bikes.each {|bike| @broken_bikes.push(bike) }
   end
 
   def fix(bike)

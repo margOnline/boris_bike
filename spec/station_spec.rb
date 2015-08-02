@@ -3,8 +3,6 @@ require 'station'
 describe 'Station' do
 
   let(:bike) { double(:bike) }
-  # let(:station) { Station.new([bike] * 3)}
-
   let(:station) {Station.new([:bike1, :bike2, :bike3])}
   # let(:empty_station) do
   #   Station.new(4)
@@ -15,7 +13,6 @@ describe 'Station' do
   #   before(:each){station.bikes = [:sdflkj]}
 
   it 'knows if it has bikes' do
-
     expect(station.bikes.length).to eq 3
   end
 
