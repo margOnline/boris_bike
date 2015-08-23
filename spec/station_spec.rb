@@ -3,36 +3,35 @@ require 'station'
 describe 'Station' do
 
   let(:bike) { double(:bike) }
-  let(:station) {Station.new([:bike1, :bike2, :bike3])}
+  let(:station) {Station.new(3)}
 
   it 'knows if it has bikes' do
+    station.bikes = [:bike1, :bike2, :bike3]
     expect(station.bikes.length).to eq 3
   end
 
   it 'knows if it doesn\'t have bikes' do
-    station = Station.new([])
     expect(station.bikes.length).to eq 0
   end
 
   it 'checks out bikes' do
+    station.bikes = [:bike1, :bike2, :bike3]
     station.check_out
     expect(station.bikes.length).to eq 2 
   end
 
   it 'does not check out bikes if it doesn\'t have any' do
-    station = Station.new([])
     expect(station.check_out).to eq 'Please see list for nearest station.'
   end
 
   it 'checks in bikes' do
     bikes = [:bike4, :bike5, :bike6]
     station.check_in(bikes)
-    expect(station.bikes).to eq [:bike1, :bike2, :bike3, :bike4, :bike5, :bike6]
+    expect(station.bikes).to eq [:bike4, :bike5, :bike6]
   end  
 
   it 'knows if its full' do
-    station = Station.new([:bike] * 10)
-    station.full?
+    station.bikes = [:bike1, :bike2, :bike3]
     expect(station.full?).to eq true
   end  
 

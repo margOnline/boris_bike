@@ -9,20 +9,20 @@ class Van
     @fixed_bikes = []
   end
 
-  def full?
-    (@fixed_bikes.length + @broken_bikes.length) >= @max_capacity
-  end
-
-  def has_space?
-    !full?
-  end
-
   def accept_bike(bikes)
     @broken_bikes = bikes.select {|bike| bike.is_broken? }
   end
 
   def deliver_bike(garage)
     garage.check_in(@broken_bikes)
+  end
+
+  def full?
+    (@fixed_bikes.length + @broken_bikes.length) >= @max_capacity
+  end
+
+  def has_space?
+    !full?
   end
 
   def empty

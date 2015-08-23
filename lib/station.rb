@@ -5,18 +5,18 @@ class Station
   attr_accessor :bikes, :broken_bikes
   attr_reader :max_capacity
 
-  def initialize(bikes)
-    @bikes = bikes
-    @max_capacity = 10
+  def initialize(max_capacity)
+    @bikes = []
+    @max_capacity = max_capacity
     @broken_bikes = []
-  end
-
-  def check_out
-    @bikes.any? ? @bikes.pop : messages[:station_empty]
   end
 
   def check_in(bikes)
     has_space? ? @bikes.concat(bikes) : messages[:station_full]
+  end
+
+  def check_out
+    @bikes.any? ? @bikes.pop : messages[:station_empty]
   end
 
   def full?

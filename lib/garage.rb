@@ -4,8 +4,10 @@
 class Garage
 
   attr_accessor :fixed_bikes, :broken_bikes
+  attr_reader :max_capacity
 
-  def initialize()
+  def initialize(max_capacity)
+    @max_capacity = max_capacity
     @fixed_bikes = []
     @broken_bikes = []
   end
@@ -14,14 +16,22 @@ class Garage
     @broken_bikes.concat bikes
   end
 
+  def check_out
+    @fixed_bikes = []
+  end
+
+  def full?
+    (@fixed_bikes.length + @broken_bikes.length) >= @max_capacity
+  end
+
+  def has_space?
+    !full?
+  end
+
   def fix(bike)
     bike.fix!
     @broken_bikes.delete(bike)
     @fixed_bikes.push(bike)
-  end
-
-  def check_out
-    @fixed_bikes = []
   end
 
   def call_van(van, fixed_bikes)

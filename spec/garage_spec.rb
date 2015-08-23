@@ -3,7 +3,7 @@ require 'garage'
 
 describe 'Garage' do
 
-  let(:garage) {Garage.new}
+  let(:garage) {Garage.new(3)}
 
   it 'checks in bikes' do
     bike1 = double :bike
@@ -41,7 +41,16 @@ describe 'Garage' do
     garage.call_van(van, fixed_bikes)
   end
 
+  describe "capacity" do
+    it "knows if it has space" do
+      expect(garage.has_space?).to eq true
+    end
 
+    it "knows if it is full" do
+      garage.fixed_bikes = [double(:bike), double(:bike), double(:bike)]
+      expect(garage.full?).to eq true
+    end
+  end
 
 end
 
