@@ -1,20 +1,14 @@
-class Van
+require_relative 'container'
+
+class Van < Container
   
-  attr_accessor :capacity, :broken_bikes, :fixed_bikes
+  attr_accessor :capacity, :broken_bikes, :working_bikes
   attr_reader :max_capacity
 
   def initialize(max_capacity)
     @max_capacity = max_capacity
     @broken_bikes = []
-    @fixed_bikes = []
-  end
-
-  def full?
-    (@fixed_bikes.length + @broken_bikes.length) >= @max_capacity
-  end
-
-  def has_space?
-    !full?
+    @working_bikes = []
   end
 
   def accept_bike(bikes)
@@ -29,12 +23,14 @@ class Van
     @broken_bikes = []
   end
 
-  def fill(fixed_bikes)
-    @fixed_bikes.concat fixed_bikes
+  def fill(bikes)
+    bikes.each do |bike|
+      bike.is_broken? ? @broken_bikes << bike : @working_bikes << bike
+    end
   end
 
-  def call_station(fixed_bikes, station)
-    station.check_in(fixed_bikes)    
+  def call_station(working_bikes, station)
+    station.check_in(working_bikes)    
   end
 
 end
