@@ -6,7 +6,7 @@ describe 'User' do
 
   it 'rents a bike from a station' do
     station = double :station
-    station.should_receive(:check_out)
+    expect(station).to receive(:check_out)
     user.rent_bike(station)
   end
 
@@ -18,7 +18,7 @@ describe 'User' do
 
   it 'returns bike to station' do
     station = double :station, :check_in => :bike
-    station.should_receive(:check_in)
+    expect(station).to receive(:check_in)
     user.return_bike(station)
   end
 

@@ -4,13 +4,6 @@ describe 'Station' do
 
   let(:bike) { double(:bike) }
   let(:station) {Station.new([:bike1, :bike2, :bike3])}
-  # let(:empty_station) do
-  #   Station.new(4)
-  #   station.bikes = [:bike1, :bike2]
-  # end
-
-  # describe 'empty_station'
-  #   before(:each){station.bikes = [:sdflkj]}
 
   it 'knows if it has bikes' do
     expect(station.bikes.length).to eq 3
@@ -40,12 +33,12 @@ describe 'Station' do
   it 'knows if its full' do
     station = Station.new([:bike] * 10)
     station.full?
-    expect(station.full?).to be_true
+    expect(station.full?).to eq true
   end  
 
   it 'knows if it has spaces' do
     station.bikes = [:bike1, :bike2]
-    expect(station.has_space?).to be_true
+    expect(station.has_space?).to eq true
   end
 
   it 'calls garage when broken bike checked in' do

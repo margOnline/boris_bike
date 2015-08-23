@@ -37,7 +37,7 @@ describe 'Garage' do
     bike2 = double :bike
     fixed_bikes = bike1, bike2
     van = double :van, {:fill  => fixed_bikes}
-    van.should_receive(:fill).with(fixed_bikes)
+    expect(van).to receive(:fill).with(fixed_bikes)
     garage.call_van(van, fixed_bikes)
   end
 

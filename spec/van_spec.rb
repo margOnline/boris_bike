@@ -10,7 +10,7 @@ describe 'Van' do
     bike4 = double :bike, {:is_broken? => false}
     van.broken_bikes = bike1, bike2
     van.fixed_bikes = bike3, bike4
-    expect(van.has_space?).to be_true
+    expect(van.has_space?).to eq true
   end
 
   it 'knows if it is full' do
@@ -18,7 +18,7 @@ describe 'Van' do
     bike1 = double :bike, {:is_broken? => true}
     bike2 = double :bike, {:is_broken? => false}
     van.broken_bikes = bike1, bike2
-    expect(van.has_space?).to be_false
+    expect(van.has_space?).to eq false
   end
 
   it 'checks in broken bikes' do
@@ -35,7 +35,7 @@ describe 'Van' do
     bike2 = double :bike
     broken_bikes = bike1, bike2
     garage = double :garage, {:check_in => broken_bikes}
-    garage.should_receive(:check_in)
+    expect(garage).to receive(:check_in)
     van.deliver_bike(garage)
   end
 
